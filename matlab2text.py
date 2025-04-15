@@ -40,12 +40,19 @@ def show_help():
     sys.exit(0)
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] in HELP_FLAGS:
+    # If called with help flags, show help
+    if len(sys.argv) == 2 and sys.argv[1] in HELP_FLAGS:
         show_help()
-
-    outname = sys.argv[1]
-    if not outname.lower().endswith('.txt'):
-        outname += '.txt'
+    # If called with no arguments, use default output filename
+    if len(sys.argv) == 1:
+        outname = 'matlabsources.txt'
+    # If called with one argument (not help), use that as output filename
+    elif len(sys.argv) == 2:
+        outname = sys.argv[1]
+        if not outname.lower().endswith('.txt'):
+            outname += '.txt'
+    else:
+        show_help()
 
     m_files = sorted(glob.glob('*.m'))
     if not m_files:
