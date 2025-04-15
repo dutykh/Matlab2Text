@@ -1,4 +1,4 @@
-# Matlab2Text Utility
+# Matlab2Text parsing utility
 
 ## Overview
 
