@@ -27,18 +27,28 @@
 
 ## Usage
 
-From the command line, run:
+From the command line, you can run the script in several ways:
 
-```sh
-python3 matlab2text.py outputname
-```
-This will create `outputname.txt` containing all `.m` files concatenated.
+- **No arguments:**
 
-Alternatively, you can specify the extension explicitly:
+  ```sh
+  python3 matlab2text.py
+  ```
+  This will create `matlabsources.txt` containing all `.m` files concatenated (default behavior).
 
-```sh
-python3 matlab2text.py outputname.txt
-```
+- **With a custom output name:**
+
+  ```sh
+  python3 matlab2text.py outputname
+  ```
+  This will create `outputname.txt` containing all `.m` files concatenated.
+
+- **With a custom output name and extension:**
+
+  ```sh
+  python3 matlab2text.py outputname.txt
+  ```
+  This will create `outputname.txt` containing all `.m` files concatenated.
 
 To show the help page:
 
