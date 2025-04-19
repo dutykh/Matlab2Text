@@ -12,6 +12,7 @@
 ## Features
 
 - Scans the current directory for all `.m` files
+- Optionally scans all subdirectories for `.m` files with the `-r` flag
 - Concatenates their contents into a single `.txt` file
 - Output filename is provided as the first command-line argument (with or without `.txt` extension; `.txt` is auto-added if needed)
 - Each file's content is delimited with clear start/end markers:
@@ -26,6 +27,16 @@
 ---
 
 ## Usage
+
+### Recursive Mode
+
+To search recursively in all subdirectories for `.m` files, add the `-r` flag anywhere in the command line:
+
+```sh
+python3 matlab2text.py -r outputname
+python3 matlab2text.py outputname.txt -r
+```
+This will include all `.m` files found in the current directory and all its subfolders.
 
 From the command line, you can run the script in several ways:
 
