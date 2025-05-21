@@ -21,7 +21,6 @@ Options:
   -h, --h, -hep, --help   Show this help message and exit.
   -r                      Recursively search subdirectories for .m files.
 """
-import os
 import sys
 import glob
 
