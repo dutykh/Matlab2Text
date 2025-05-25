@@ -21,6 +21,7 @@ Options:
   -h, --h, -hep, --help   Show this help message and exit.
   -r                      Recursively search subdirectories for .m files.
 """
+
 import sys
 import glob
 
@@ -45,11 +46,13 @@ Options:
   -r                      Recursively search subdirectories for .m files.
 """
 
-HELP_FLAGS = {'-h', '--h', '-hep', '--help'}
+HELP_FLAGS = {"-h", "--h", "-hep", "--help"}
+
 
 def show_help():
     print(HELP_TEXT)
     sys.exit(0)
+
 
 def main():
     # If called with help flags, show help
@@ -57,36 +60,37 @@ def main():
     if len(sys.argv) >= 2 and any(arg in HELP_FLAGS for arg in sys.argv[1:]):
         show_help()
 
-    recursive = '-r' in sys.argv[1:]
-    args = [arg for arg in sys.argv[1:] if arg != '-r']
+    recursive = "-r" in sys.argv[1:]
+    args = [arg for arg in sys.argv[1:] if arg != "-r"]
 
     # Determine output filename
     if len(args) == 0:
-        outname = 'matlabsources.txt'
+        outname = "matlabsources.txt"
     elif len(args) == 1:
         outname = args[0]
-        if not outname.lower().endswith('.txt'):
-            outname += '.txt'
+        if not outname.lower().endswith(".txt"):
+            outname += ".txt"
     else:
         show_help()
 
     # Find .m files
     if recursive:
-        m_files = sorted(glob.glob('**/*.m', recursive=True))
+        m_files = sorted(glob.glob("**/*.m", recursive=True))
     else:
-        m_files = sorted(glob.glob('*.m'))
+        m_files = sorted(glob.glob("*.m"))
     if not m_files:
         print("No .m files found in the specified location.")
         sys.exit(1)
 
-    with open(outname, 'w', encoding='utf-8') as outfile:
+    with open(outname, "w", encoding="utf-8") as outfile:
         for fname in m_files:
             outfile.write(f"=== Start file: {fname} ===\n\n")
-            with open(fname, 'r', encoding='utf-8', errors='replace') as infile:
+            with open(fname, "r", encoding="utf-8", errors="replace") as infile:
                 outfile.write(infile.read())
-                outfile.write('\n')
+                outfile.write("\n")
             outfile.write(f"\n=== End file {fname} ===\n\n")
     print(f"Concatenated {len(m_files)} files into {outname}.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
